@@ -1,4 +1,4 @@
-number_of_tweets = 2
+number_of_tweets = 5
 query_topic = "crypto"
 
 # Surround phrases with quotes (") for exact match.

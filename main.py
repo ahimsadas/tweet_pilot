@@ -46,8 +46,12 @@ if response.status_code == 200:
     # Extract the generated text from the response
     chatGPT_response = ask_gpt(prompt)
 
-    print(">>> PROMPT >>>\n",chatGPT_prompt)
-    print("\n\n")
-    print(">>> RESPONSE >>>\n",chatGPT_response)
+    # print(">>> PROMPT >>>\n",chatGPT_prompt)
+    # print("\n\n")
+    # print(">>> RESPONSE >>>\n",chatGPT_response)
+
+    #Converting response string to JSON
+    chatGPT_json_response = json.loads(chatGPT_response)
+    print(chatGPT_json_response)
 else:
     print("Error fetching data: ", response.status_code)

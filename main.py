@@ -39,7 +39,6 @@ if response.status_code == 200:
             prompt      = prompt,
             max_tokens  = max_tokens,
             temperature = temperature
-
         )
         message = completions.choices[0].text
         return message.strip()

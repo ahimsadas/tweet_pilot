@@ -49,11 +49,12 @@ if response.status_code == 200:
     # Converting response string to JSON
     chatGPT_json_response = json.loads(chatGPT_response)
 
-    # Processing each tweet
+    # Extracting the tweets array
     tweets = []
     for tweet in chatGPT_json_response['generated_tweets']:
         tweets.append(tweet['content'])
 
+    # Processing each tweet
     for item in tweets:
         print(item,"\n")
 else:

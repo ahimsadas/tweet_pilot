@@ -1,7 +1,9 @@
 import requests
 import json
+import config
 
-url = "https://newsapi.org/v2/everything?pageSize=5&q=crypto&apiKey=cc5426462a664c0399c218ae0bdfd1b9"
+query_topic = config.query_topic
+url = f"https://newsapi.org/v2/everything?pageSize=5&q={query_topic}&apiKey=cc5426462a664c0399c218ae0bdfd1b9"
 
 # Fetch the JSON data from the URL
 response = requests.get(url)

@@ -1,15 +1,20 @@
 import requests
 import json
 import config
+import openai
+openai.organization = config.openai_organization_key
+openai.api_key = config.openai_api_key
+openai.Model.list()
 
-query_topic = config.query_topic
-url = f"https://newsapi.org/v2/everything?pageSize=5&q={query_topic}&apiKey=cc5426462a664c0399c218ae0bdfd1b9"
+url = f"https://newsapi.org/v2/everything?pageSize={config.number_of_tweets}&q={config.query_topic}&apiKey={config.newsapi_api_key}"
 
 # Fetch the JSON data from the URL
 response = requests.get(url)
 
 # Check if the request was successful
 if response.status_code == 200:
+    chatGPT_prompt = config.chatGPT_prompt
+    
     # Decode the JSON data
     data = json.loads(response.text)
 
@@ -17,7 +22,32 @@ if response.status_code == 200:
     for article in data['articles']:
         urls.append(article['url'])
 
+    # Append URLs in chatGPT prompt
     for url in urls:
-        print(url)
+        chatGPT_prompt+=f"\n{url}"
+
+    # Set the parameters for the request
+    model         = "text-davinci-003"
+    prompt        = chatGPT_prompt
+    temperature   = 0.9
+    max_tokens    = 1024
+
+    def ask_gpt(prompt):
+        completions = openai.Completion.create(
+            model       = model,
+            prompt      = prompt,
+            max_tokens  = max_tokens,
+            temperature = temperature
+
+        )
+        message = completions.choices[0].text
+        return message.strip()
+
+    # Extract the generated text from the response
+    chatGPT_response = ask_gpt(prompt)
+
+    print(">>> PROMPT >>>\n",chatGPT_prompt)
+    print("\n\n")
+    print(">>> RESPONSE >>>\n",chatGPT_response)
 else:
     print("Error fetching data: ", response.status_code)

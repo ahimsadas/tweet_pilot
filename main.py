@@ -24,6 +24,7 @@ if response.status_code == 200:
 
     # Append URLs in chatGPT prompt
     for url in urls:
+        # TODO: Add check if URL has already been processed (implement DB)
         chatGPT_prompt+=f"\n{url}"
 
     # Set the parameters for the request

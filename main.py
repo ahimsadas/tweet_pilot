@@ -44,15 +44,18 @@ if response.status_code == 200:
         message = completions.choices[0].text
         return message.strip()
 
-    # Extract the generated text from the response
+    # Processing the response
     chatGPT_response = ask_gpt(prompt)
 
-    # print(">>> PROMPT >>>\n",chatGPT_prompt)
-    # print("\n\n")
-    # print(">>> RESPONSE >>>\n",chatGPT_response)
-
-    #Converting response string to JSON
+    # Converting response string to JSON
     chatGPT_json_response = json.loads(chatGPT_response)
-    print(chatGPT_json_response)
+
+    # Processing each tweet
+    tweets = []
+    for tweet in chatGPT_json_response['generated_tweets']:
+        tweets.append(tweet['content'])
+
+    for item in tweets:
+        print(item,"\n")
 else:
     print("Error fetching data: ", response.status_code)

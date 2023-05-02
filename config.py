@@ -8,7 +8,7 @@ query_topic = "crypto"
 # The complete value for q must be URL-encoded. Max length: 500 chars.
 
 # SECRETS
-openai_api_key              = "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"
+openai_api_key              = "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"
 openai_organization_key     = "org-FyPhgskwwxBLTTt9nIPjy4gD"
 newsapi_api_key             = "cc5426462a664c0399c218ae0bdfd1b9"
 TWITTER_API_KEY             = 'S9DlzxrQVnhkC7umCq4HCcZgS'

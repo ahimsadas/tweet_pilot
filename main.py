@@ -44,6 +44,7 @@ if response.status_code == 200:
     max_tokens    = 1024
 
     def ask_gpt(prompt):
+        # TODO : Iterate prompts one by one!
         completions = openai.Completion.create(
             model       = model,
             prompt      = prompt,
@@ -73,7 +74,7 @@ if response.status_code == 200:
     # Processing each tweet
     for index, item in enumerate(tweets):
         print("DEBUG : Tweet #",index+1," : ",item,"\n")
-        client.create_tweet(text=item)
+        # client.create_tweet(text=item)
 
     # client.create_tweet(text=tweets[0])
 else:

@@ -71,8 +71,10 @@ if response.status_code == 200:
         tweets.append(tweet['content'])
 
     # Processing each tweet
-    for item in tweets:
-        print(item,"\n")
+    for index, item in enumerate(tweets):
+        print("DEBUG : Tweet #",index+1," : ",item,"\n")
         client.create_tweet(text=item)
+
+    # client.create_tweet(text=tweets[0])
 else:
     print("Error fetching data: ", response.status_code)

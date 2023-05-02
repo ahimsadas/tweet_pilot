@@ -1,4 +1,4 @@
-number_of_tweets = 5
+number_of_tweets = 10
 query_topic = "crypto"
 
 # Surround phrases with quotes (") for exact match.
@@ -8,7 +8,7 @@ query_topic = "crypto"
 # The complete value for q must be URL-encoded. Max length: 500 chars.
 
 # SECRETS
-openai_api_key              = "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"
+openai_api_key              = "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"
 openai_organization_key     = "org-FyPhgskwwxBLTTt9nIPjy4gD"
 newsapi_api_key             = "cc5426462a664c0399c218ae0bdfd1b9"
 TWITTER_API_KEY             = 'S9DlzxrQVnhkC7umCq4HCcZgS'

@@ -1,31 +1,17 @@
 // LOGIC
 
-1. Fetch JSON from https://newsapi.org/v2/everything?pageSize=5&q=crypto&apiKey=cc5426462a664c0399c218ae0bdfd1b9
+1. Fetch JSON from https://newsapi.org/v2/everything?pageSize=10&q=crypto&apiKey=cc5426462a664c0399c218ae0bdfd1b9 (10 tweets)
 2. Extract url objects
-3. Run this prompt in chatGPT
-
-Compose tweets based on the news articles provided below in a sarcastic, satirical, and funny tone. Return the output in the given JSON format.
-
-{
-    "generated_tweets": [
-        {
-            "content": "<tweet_body><hashtags><link>"
-        },
-        {
-            "content": "<tweet_body><hashtags><link>"
-        },
-        ...
-    ]
-}
-
-Do not shorten the links and also throw in some emojis in the <tweet_body>
-
-https://www.engadget.com/venmo-now-lets-you-send-crypto-to-other-users-for-some-reason-192015694.html
-https://www.wired.com/story/sec-dissenter-crypto-regulation/
-https://gizmodo.com/ftx-sam-bankman-fried-cybersecurity-hacking-crypto-1850321150
-https://gizmodo.com/at-t-crypto-hack-sim-card-ellis-pinsky-1850299709
-https://gizmodo.com/binance-source-code-crypto-cz-1850323685
-
+3. Run prompt in chatGPT
 4. Get JSON response from chatGPT
-5. Loop through generated_tweets.content and post each tweet every 4.5 hours
-6. Once generated_tweets array is exhausted go to step 1
+5. Loop through "generated_tweets.content"
+6. Store each new tweet in a DB
+7. Maintain a cursor
+7. Run "tweeter" as a cron job. This will post a new tweet every 6 hours. 6 * 10 = 60 hours until completion
+6. Once DB is exhausted (cursor position can no longer increment) go to step 1
+
+
+// ERROR CASES TO BE HANDLED
+• openAI 5xx
+• chatGPT response JSON parsing error
+• chatGPT responses are not consistent! Iterate one by one?

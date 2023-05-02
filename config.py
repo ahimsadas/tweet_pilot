@@ -8,8 +8,8 @@ query_topic = "crypto"
 # The complete value for q must be URL-encoded. Max length: 500 chars.
 
 # SECRETS
-openai_api_key          = ""
-openai_organization_key = ""
-newsapi_api_key         = ""
+openai_api_key          = "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"
+openai_organization_key = "org-FyPhgskwwxBLTTt9nIPjy4gD"
+newsapi_api_key         = "cc5426462a664c0399c218ae0bdfd1b9"
 
 chatGPT_prompt = "Compose tweets based on the news articles provided below in a sarcastic, satirical, and funny tone. Return the output in the given JSON format.{\"generated_tweets\": [{\"content\": \"<tweet>\"},{\"content\": \"<tweet>\"},...]}Append relevant hashtags and the respective URL of the article at the end of each <tweet>. Do not shorten the URLs and also throw in some emojis in the <tweet>"

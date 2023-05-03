@@ -1,4 +1,5 @@
 import requests
+import random
 import json
 import config
 import tweepy
@@ -7,7 +8,7 @@ openai.organization = config.openai_organization_key
 openai.api_key = config.openai_api_key
 openai.Model.list()
 
-url = f"https://newsapi.org/v2/everything?pageSize={config.number_of_tweets}&q={config.query_topic}&apiKey={config.newsapi_api_key}"
+url = f"https://newsapi.org/v2/everything?pageSize={config.number_of_news_articles}&q={config.query_topic}&apiKey={config.newsapi_api_key}"
 
 client = tweepy.Client(
     consumer_key        = config.TWITTER_API_KEY,
@@ -32,10 +33,14 @@ if response.status_code == 200:
 
     print("DEBUG : Total Number of articles received = ",len(urls),"\n")
 
-    # Append URLs in chatGPT prompt
-    for url in urls:
-        # TODO: Add check if URL has already been processed (implement DB)
-        chatGPT_prompt+=f"\n{url}"
+    # TODO : Implement DB and append the latest URL only
+    
+    # TEMP : Appending a single random URL
+    chatGPT_prompt+=f"\n{urls[random.randrange(10)]}"
+
+    # NOT IDEAL : Append all URLs in chatGPT prompt
+    # for url in urls:
+    #     chatGPT_prompt+=f"\n{url}"
 
     # Set the parameters for the request
     model         = "text-davinci-003"
@@ -66,22 +71,27 @@ if response.status_code == 200:
 
     print("DEBUG : chatGPT_json_response = ",chatGPT_json_response,"\n")
 
-    # Extracting the tweets array
-    tweets = []
-    for tweet in chatGPT_json_response['generated_tweets']:
-        tweets.append(tweet['content'])
+    final_tweet = chatGPT_json_response['generated_tweet'].strip()
 
-    if len(tweets) != len(urls):
-        print("DEBUG : chatGPT acting like a bitch!")
-        print("DEBUG : urls -> ",len(urls)," tweets -> ",len(tweets),"\n")
-    else:
-        print("DEBUG : chatGPT acting fine!\n")
+    print("DEBUG : Final Tweet ->",final_tweet)
 
-    # Processing each tweet
-    for index, item in enumerate(tweets):
-        print("DEBUG : Tweet #",index+1," : ",item,"\n")
-        # client.create_tweet(text=item)
+    # # TEMP : Extracting the tweets array
+    # tweets = []
+    # for tweet in chatGPT_json_response['generated_tweets']:
+    #     tweets.append(tweet['content'])
 
-    # client.create_tweet(text=tweets[0])
+    # # TEMP : Checking if chatGPT is being weird
+    # if len(tweets) != len(urls):
+    #     print("DEBUG : chatGPT is being weird!")
+    #     print("DEBUG : urls -> ",len(urls)," tweets -> ",len(tweets),"\n")
+    # else:
+    #     print("DEBUG : chatGPT is fine!\n")
+
+    # # TEMP : Processing each tweet
+    # for index, item in enumerate(tweets):
+    #     print("DEBUG : Tweet #",index+1," : ",item,"\n")
+    #     # client.create_tweet(text=item)
+
+    # # client.create_tweet(text=tweets[0])
 else:
     print("Error fetching data: ", response.status_code)

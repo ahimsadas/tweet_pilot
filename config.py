@@ -1,4 +1,4 @@
-number_of_tweets = 10
+number_of_news_articles = 10
 query_topic = "crypto"
 
 # Surround phrases with quotes (") for exact match.
@@ -8,7 +8,7 @@ query_topic = "crypto"
 # The complete value for q must be URL-encoded. Max length: 500 chars.
 
 # SECRETS
-openai_api_key              = "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"
+openai_api_key              = "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"
 openai_organization_key     = "org-FyPhgskwwxBLTTt9nIPjy4gD"
 newsapi_api_key             = "cc5426462a664c0399c218ae0bdfd1b9"
 TWITTER_API_KEY             = 'S9DlzxrQVnhkC7umCq4HCcZgS'
@@ -19,4 +19,4 @@ TWITTER_ACCESS_TOKEN        = "3180326750-Ka9zltqvg6bZAwdWrPyjIE9qbloyGqd8hTsAHr
 TWITTER_ACCESS_TOKEN_SECRET = "UI1kfi7xWnVJmcFCQOwJddZi8pKz5NYGIPfbgcQbxCENt"
 # TWITTER_BEARER_TOKEN        = "AAAAAAAAAAAAAAAAAAAAANa2nAEAAAAAlGEO4ySucJ3pZjn3e%2BzFzIYrcnc%3DHmkvHIXw1hg8jQJELntbzKUrJCjMIQfM59tMm9cQJS7B8ECXLa"
 
-chatGPT_prompt = "Form an opinion and compose tweet(s) based on the news article URL(s) provided below in a sarcastic, satirical, and funny tone.\n\nReturn the output in the given JSON format\n{\"generated_tweets\": [{\"content\": \"<tweet>\"},{\"content\": \"<tweet>\"}, ... ]}\n\nAppend relevant hashtags at the end of each <tweet>.\nEach <tweet> should be in this format '<tweet_text> <relevant_hashtags>'.\nThrow in some emojis in the <tweet_text>.\nIf only one URL is provided return only one <tweet>.\n"
+chatGPT_prompt = "Form an opinion and compose a tweet based on the news article URL provided below - in a sarcastic, satirical, and funny tone.\n\nReturn the output in the given JSON format\n{\"generated_tweet\":\"<tweet>\"}\n\nAppend relevant hashtags at the end of the <tweet>.\nThe <tweet> should be in this format '<tweet_text> <relevant_hashtags>'.\nThrow in some emojis in the <tweet_text>.\n"

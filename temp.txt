@@ -15,3 +15,4 @@
 • openAI 5xx
 • chatGPT response JSON parsing error
 • chatGPT responses are not consistent! Iterate one by one?
+    -> YES chatGPT can process only one URL at a time for best results!

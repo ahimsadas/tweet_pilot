@@ -40,7 +40,7 @@ if response.status_code == 200:
     # Set the parameters for the request
     model         = "text-davinci-003"
     prompt        = chatGPT_prompt
-    temperature   = 0.9
+    temperature   = 1
     max_tokens    = 1024
 
     def ask_gpt(prompt):
@@ -70,6 +70,12 @@ if response.status_code == 200:
     tweets = []
     for tweet in chatGPT_json_response['generated_tweets']:
         tweets.append(tweet['content'])
+
+    if len(tweets) != len(urls):
+        print("DEBUG : chatGPT acting like a bitch!")
+        print("DEBUG : urls -> ",len(urls)," tweets -> ",len(tweets),"\n")
+    else:
+        print("DEBUG : chatGPT acting fine!\n")
 
     # Processing each tweet
     for index, item in enumerate(tweets):

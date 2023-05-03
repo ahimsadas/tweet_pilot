@@ -36,7 +36,7 @@ if response.status_code == 200:
     # TODO : Implement DB and append the latest URL only
     
     # TEMP : Appending a single random URL
-    chatGPT_prompt+=f"\n{urls[random.randrange(10)]}"
+    chatGPT_prompt+=f"\n{urls[random.randrange(config.number_of_news_articles)]}"
 
     # NOT IDEAL : Append all URLs in chatGPT prompt
     # for url in urls:
@@ -74,6 +74,7 @@ if response.status_code == 200:
     final_tweet = chatGPT_json_response['generated_tweet'].strip()
 
     print("DEBUG : Final Tweet ->",final_tweet)
+    # client.create_tweet(text=final_tweet)
 
     # # TEMP : Extracting the tweets array
     # tweets = []

@@ -71,8 +71,8 @@ if response.status_code == 200:
 
     print("DEBUG : chatGPT_json_response = ",chatGPT_json_response,"\n")
 
+    # Processing and publishing the final tweet
     final_tweet = chatGPT_json_response['generated_tweet'].strip()
-
     print("DEBUG : Final Tweet ->",final_tweet)
     # client.create_tweet(text=final_tweet)
 

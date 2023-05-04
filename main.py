@@ -8,7 +8,10 @@ openai.organization = config.openai_organization_key
 openai.api_key = config.openai_api_key
 openai.Model.list()
 
-url = f"https://newsapi.org/v2/everything?pageSize={config.number_of_news_articles}&q={config.query_topic}&apiKey={config.newsapi_api_key}"
+# TODO : Make 'page' value dynamic based on Postgres query
+page = 1
+
+url = f"https://newsapi.org/v2/everything?pageSize={config.number_of_news_articles}&page={page}&q={config.query_topic}&apiKey={config.newsapi_api_key}"
 
 client = tweepy.Client(
     consumer_key        = config.TWITTER_API_KEY,
